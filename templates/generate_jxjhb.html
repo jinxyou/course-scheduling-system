@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>Hello, world!</title>
+  </head>
+  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded" id="p-d">
+
+<header class="appbar mdui-appbar mdui-appbar-fixed">
+  <div class="mdui-toolbar mdui-color-theme">
+    <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}">
+      <i class="mdui-icon material-icons">menu</i>
+    </span>
+    <a href="../" class="mdui-typo-headline mdui-hidden-xs">苏州城市学院</a>
+    <a href="./" class="mdui-typo-title">排课系统</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a class="mdui-btn mdui-color-theme-accent" mdui-menu="{target: '#log_menu'}">{{username}}</a>
+      <ul class="mdui-menu" id="log_menu">
+          <li class="mdui-menu-item">
+            <a href="/logout" class="mdui-ripple">Log out</a>
+          </li>
+        </ul>
+  </div>
+</header>
+
+  <div class="mdui-drawer" id="main-drawer">
+    <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+
+
+        <div class="
+          mdui-collapse-item
+          ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="
+              mdui-list-item-icon
+              mdui-icon
+              material-icons
+              mdui-text-color-blue">near_me</i>
+            <div class="mdui-list-item-content">信息表</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+          </div>
+
+          <div class="mdui-collapse-item-body mdui-list">
+            <a href="/xsb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">学生信息表</a>
+            <a href="/zyb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">专业信息表</a>
+              <a href="/bjb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">班级信息表</a>
+            <a href="/jxjhb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">教学计划表</a>
+            <a href="/jxrwb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">教学任务表</a>
+          </div>
+    </div>
+      <div class="
+          mdui-collapse-item
+          mdui-collapse-item-open
+          ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="
+              mdui-list-item-icon
+              mdui-icon
+              material-icons
+              mdui-text-color-blue">near_me</i>
+            <div class="mdui-list-item-content">功能</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+          </div>
+      <div class="mdui-collapse-item-body mdui-list">
+          <a href="./generate_jxjhb" class="
+                    mdui-list-item
+                    mdui-ripple
+                    mdui-list-item-active
+                    ">制作教学计划表</a>
+          <a href="./generate_jxrwb" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">生成教学任务表</a>
+                              <a href="./schedule" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">安排课程</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <a id="anchor-top"></a>
+    <div class="container p-introduction mdui-container">
+    <h1 class="title mdui-text-color-theme">制作教学计划表</h1>
+        <div class="intro mdui-typo">
+
+        </div>
+
+        <div class="mdui-typo">
+        <h4 class="article-title">请输入需要导入和生成的计划表的届年份<a class="anchor" id="float-label"></a></h4>
+        </div>
+
+<form action="/generate_jxjhb" method="post">
+        <div class="mdui-container">
+
+          <div class="mdui-row">
+            <div class="mdui-col-xs-3">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">导入届</label>
+                    <input class="mdui-textfield-input" name="imp_y" id="imp_y" value="{{imp_y}}" type="text"/>
+                </div>
+            </div>
+
+
+              <div class="mdui-col-xs-3">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">目标届</label>
+                    <input class="mdui-textfield-input" name="target_y" id="target_y" type="text"/>
+                </div>
+            </div>
+              <div class="mdui-col-xs-3">
+                  <br>
+                  <input id="generate" name="generate" type="submit" value="生成" class="mdui-btn mdui-btn-raised mdui-float-left">
+              </div>
+</div>
+
+
+
+
+
+
+        </div>
+
+
+        <div class="mdui-container">
+          <!-- 在所有设备上，每列都是 50% 宽度。 -->
+          <div class="mdui-row">
+
+                <div class="mdui-col-xs-3">
+                <h3>教学计划表</h3>
+                </div>
+                <div class="mdui-col-xs-3">
+                    <input id="save" name="save" type="submit" value="保存" class="mdui-btn mdui-btn-raised mdui-float-left">
+                </div>
+            <div class="container p-font mdui-container">
+              <div class="mdui-table-fluid">
+              <table class="mdui-table mdui-table-hoverable">
+                        <thead>
+                        <tr>
+
+                          <th>学院代码</th>
+                          <th>专业代码</th>
+                          <th>入学时间</th>
+                          <th>教学形式代码</th>
+                          <th>课程代码</th>
+                          <th>上课学期</th>
+                          <th>考试学期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for record in jxjhb %}
+                        <tr>
+
+                          <td><input class="mdui-textfield-input" name="xydm_{{record.sxh}}" id="xydm_{{record.sxh}}" value="{{record.xydm}}"/></td>
+                          <td><input class="mdui-textfield-input" name="zydm_{{record.sxh}}" id="zydm_{{record.sxh}}" value="{{record.zydm}}"/></td>
+                          <td><input class="mdui-textfield-input" name="rxsj_{{record.sxh}}" id="rxsj_{{record.sxh}}" value="{{record.rxsj}}"/></td>
+                          <td><input class="mdui-textfield-input" name="jxxsdm_{{record.sxh}}" id="jxxsdm_{{record.sxh}}" value="{{record.jxxsdm}}"/></td>
+                          <td><input class="mdui-textfield-input" name="kcdm_{{record.sxh}}" id="kcdm_{{record.sxh}}" value="{{record.kcdm}}"/></td>
+                          <td><input class="mdui-textfield-input" name="skxq_{{record.sxh}}" id="skxq_{{record.sxh}}" value="{{record.skxq}}"/></td>
+                          <td><input class="mdui-textfield-input" name="ksxq_{{record.sxh}}" id="ksxq_{{record.sxh}}" value="{{record.ksxq}}"/></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+              </table>
+            </div>
+              </div>
+
+
+
+          </div>
+        </div>
+
+
+</form>
+</div>
+
+
+
+    <!-- MDUI JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  </body>
+</html>

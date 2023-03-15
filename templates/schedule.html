@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>Hello, world!</title>
+  </head>
+  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded" id="p-d">
+
+<header class="appbar mdui-appbar mdui-appbar-fixed">
+  <div class="mdui-toolbar mdui-color-theme">
+    <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}">
+      <i class="mdui-icon material-icons">menu</i>
+    </span>
+    <a href="../" class="mdui-typo-headline mdui-hidden-xs">苏州城市学院</a>
+    <a href="./" class="mdui-typo-title">排课系统</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a class="mdui-btn mdui-color-theme-accent" mdui-menu="{target: '#log_menu'}">{{username}}</a>
+      <ul class="mdui-menu" id="log_menu">
+          <li class="mdui-menu-item">
+            <a href="/logout" class="mdui-ripple">Log out</a>
+          </li>
+        </ul>
+  </div>
+</header>
+
+  <div class="mdui-drawer" id="main-drawer">
+    <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+
+
+        <div class="
+          mdui-collapse-item
+          ">
+          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="
+              mdui-list-item-icon
+              mdui-icon
+              material-icons
+              mdui-text-color-blue">near_me</i>
+            <div class="mdui-list-item-content">信息表</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+          </div>
+
+          <div class="mdui-collapse-item-body mdui-list">
+            <a href="/xsb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">学生信息表</a>
+            <a href="/zyb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">专业信息表</a>
+              <a href="/bjb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">班级信息表</a>
+            <a href="/jxjhb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">教学计划表</a>
+            <a href="/jxrwb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">教学任务表</a>
+              <a href="./kcb_form" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">排课课程表</a>
+          </div>
+    </div>
+      <div class="
+          mdui-collapse-item
+          mdui-collapse-item-open
+          ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="
+              mdui-list-item-icon
+              mdui-icon
+              material-icons
+              mdui-text-color-blue">near_me</i>
+            <div class="mdui-list-item-content">功能</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+          </div>
+      <div class="mdui-collapse-item-body mdui-list">
+                    <a href="./generate_jxjhb" class="
+                    mdui-list-item
+                    mdui-ripple
+
+                    ">制作教学计划表</a>
+                    <a href="./generate_jxrwb" class="
+                    mdui-list-item
+                    mdui-ripple
+                    ">生成教学任务表</a>
+                    <a href="./schedule" class="
+                    mdui-list-item
+                    mdui-ripple
+                    mdui-list-item-active
+                    ">安排课程</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <a id="anchor-top"></a>
+    <div class="container p-introduction mdui-container">
+    <h1 class="title mdui-text-color-theme">安排课程</h1>
+        <div class="intro mdui-typo">
+
+        </div>
+
+        <div class="mdui-typo">
+        <h4 class="article-title">请选择需要排课的班级<a class="anchor" id="float-label"></a></h4>
+
+        <hr/>
+            <div class="mdui-container">
+
+            <div class="mdui-row">
+                <div class="mdui-chip">
+                    <span class="mdui-chip-title">学期：{{xqbs}}</span>
+                </div>
+                <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#semDialog'}">选择学期</button>
+            </div>
+            <div class="mdui-row">
+                <div class="mdui-chip">
+                    <span class="mdui-chip-title">班级：{{bjjc}}</span>
+                </div>
+                <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#classDialog'}">选择班级</button>
+            </div>
+
+        </div>
+        <hr/>
+
+        <div class="mdui-container">
+          <!-- 在所有设备上，每列都是 50% 宽度。 -->
+
+
+          <div class="mdui-row">
+              <div class="mdui-col-xs-6">
+                  <div class="container p-font mdui-container">
+                    <h3>待选课程</h3>
+                      <form action="/choose_course", method="post">
+                        <select id="course" name="course" multiple size="8" class="mdui-select">
+                              {% for record in jxrwb %}
+                                <optgroup value="{{record.kcdm}}" label="{{record.kcjc}}, {{record.tName}}, {{record.ksz}}-{{record.jsz}}">
+                                    {% for pk in pkkb_dict[record.kcdm] %}
+                                    <option value="{{pk.kcdm}}">{{pk.kcmc}}, {{pk.ksz}}-{{pk.jsz}}, {{pk.skdd}}, 星期{{pk.skxq}}, {{pk.qsjc}}-{{pk.jsjc}}节</option>
+                                    {% endfor %}
+                                </optgroup>
+                              {% endfor %}
+                        </select>
+                          <div class="mdui-row">
+                            <input type="submit" value="删除" class="mdui-btn mdui-btn-raised mdui-float-left"/>
+                          </div>
+                      </form>
+                  </div>
+
+              </div>
+              <div class="mdui-col-xs-6">
+                  <hr/>
+                  <div class="container p-font mdui-container">
+                  <h3>安排课程</h3>
+                    <div class="mdui-row">
+                        <div class="mdui-chip">
+                            <span class="mdui-chip-title">课程：{{course}}</span>
+                        </div>
+                        <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#courseDialog'}">选择课程</button>
+                    </div>
+                      <div class="mdui-row">
+                        <div class="mdui-chip">
+                            <span class="mdui-chip-title">时间：{{time}}</span>
+                        </div>
+                        <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#timeDialog'}">选择时间</button>
+                    </div>
+                      <div class="mdui-row">
+                        <div class="mdui-chip">
+                            <span class="mdui-chip-title">教师：{{time}}</span>
+                        </div>
+                        <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#semDialog'}">选择教师</button>
+                    </div>
+                      <div class="mdui-row">
+                        <div class="mdui-chip">
+                            <span class="mdui-chip-title">地点：{{time}}</span>
+                        </div>
+                        <button class="mdui-btn mdui-ripple mdui-color-theme-accent mdui-btn-raised" mdui-dialog="{target: '#semDialog'}">选择地点</button>
+                    </div>
+
+                  </div>
+                  <hr/>
+              </div>
+          </div>
+
+          <div class="mdui-row">
+              <div class="container p-font mdui-container">
+
+              <h3>{{title}}</h3>
+                  <div class="mdui-table-fluid">
+            <table class="mdui-table mdui-table-hoverable">
+            <thead>
+            <tr>
+
+              <th></th>
+              <th>星期一</th>
+              <th>星期二</th>
+              <th>星期三</th>
+              <th>星期四</th>
+              <th>星期五</th>
+              <th>星期六</th>
+              <th>星期日</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for r in kcb %}
+            <tr>
+              <td>{{r[0]}}</td>
+              <td>{{r[1].name}}<br/>{{r[1].time}}<br/>{{r[1].location}}<br/>{{r[1].teacher}}<br/>{{r[1].fre}} </td>
+              <td>{{r[2].name}}<br/>{{r[2].time}}<br/>{{r[2].location}}<br/>{{r[2].teacher}}<br/>{{r[2].fre}} </td>
+              <td>{{r[3].name}}<br/>{{r[3].time}}<br/>{{r[3].location}}<br/>{{r[3].teacher}}<br/>{{r[3].fre}} </td>
+              <td>{{r[4].name}}<br/>{{r[4].time}}<br/>{{r[4].location}}<br/>{{r[4].teacher}}<br/>{{r[4].fre}} </td>
+              <td>{{r[5].name}}<br/>{{r[5].time}}<br/>{{r[5].location}}<br/>{{r[5].teacher}}<br/>{{r[5].fre}} </td>
+              <td>{{r[6].name}}<br/>{{r[6].time}}<br/>{{r[6].location}}<br/>{{r[6].teacher}}<br/>{{r[6].fre}} </td>
+              <td>{{r[7].name}}<br/>{{r[7].time}}<br/>{{r[7].location}}<br/>{{r[7].teacher}}<br/>{{r[7].fre}} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+  </table>
+</div>
+              </div>
+          </div>
+
+        </div>
+
+        </div>
+    </div>
+
+
+
+
+<div class="mdui-dialog" id="semDialog">
+      <div class="mdui-dialog-title">学期选择器</div>
+      <form action="/schedule" method="post">
+      <div class="mdui-dialog-content">
+                <label>学期:</label>
+                    <select multiple id="xqbs" name="xqbs" class="mdui-select">
+                        {% for record in sem_list %}
+                        <option value="{{record}}">{{record}}</option>
+                        {% endfor %}
+                    </select>
+        </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple">取消</button>
+        <input type="submit" value="确定" name="query1" class="mdui-btn mdui-ripple"/>
+      </div>
+    </form>
+</div>
+
+<div class="mdui-dialog" id="classDialog">
+      <div class="mdui-dialog-title">班级选择器</div>
+      <form action="/schedule" method="post">
+      <div class="mdui-dialog-content">
+                <label>班级:</label>
+                    <select multiple id="bjdm" name="bjdm" class="mdui-select">
+                        {% for record in clas_list %}
+                        <option value="{{record.bjdm}}">{{record.bjjc}}</option>
+                        {% endfor %}
+                    </select>
+        </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple">取消</button>
+        <input type="submit" value="确定" name="query2" class="mdui-btn mdui-ripple"/>
+      </div>
+    </form>
+</div>
+
+<div class="mdui-dialog" id="timeDialog">
+      <div class="mdui-dialog-title">时间选择器</div>
+      <form action="/schedule" method="post">
+      <div class="mdui-dialog-content">
+            <label>星期:</label>
+                    <select id="skxq" name="skxq" class="mdui-select" mdui-select>
+                      <option value=" " selected> </option>
+                      <option value="1">星期一</option>
+                      <option value="2">星期二</option>
+                      <option value="3">星期三</option>
+                      <option value="4">星期四</option>
+                      <option value="5">星期五</option>
+                      <option value="6">星期六</option>
+                      <option value="7">星期日</option>
+                    </select>
+          <label>开始节次:</label>
+                    <select id="qsjc" name="qsjc" class="mdui-select" mdui-select>
+                      <option value=" " selected> </option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+          <label>结束节次:</label>
+                    <select id="jsjc" name="jsjc" class="mdui-select" mdui-select>
+                      <option value=" " selected> </option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+        </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple">取消</button>
+        <input type="submit" value="确定" name="query2" class="mdui-btn mdui-ripple"/>
+      </div>
+    </form>
+</div>
+
+
+
+    <!-- MDUI JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  </body>
+</html>

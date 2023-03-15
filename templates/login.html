@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <title>Hello, world!</title>
+  </head>
+  <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded" id="p-d">
+
+<header class="appbar mdui-appbar mdui-appbar-fixed">
+  <div class="mdui-toolbar mdui-color-theme">
+<!--    <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}">-->
+<!--      <i class="mdui-icon material-icons">menu</i>-->
+<!--    </span>-->
+    <a href="../" class="mdui-typo-headline mdui-hidden-xs">苏州城市学院</a>
+    <a href="./" class="mdui-typo-title">排课系统</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="/login" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
+      <i class="mdui-icon material-icons">account_circle</i>    </a>
+  </div>
+</header>
+
+<!--  <div class="mdui-drawer" id="main-drawer">-->
+<!--    <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">-->
+
+<!--    <div class="-->
+<!--          mdui-collapse-item-->
+<!--          ">-->
+<!--          <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">-->
+<!--            <i class="-->
+<!--              mdui-list-item-icon-->
+<!--              mdui-icon-->
+<!--              material-icons-->
+<!--              mdui-text-color-blue">near_me</i>-->
+<!--            <div class="mdui-list-item-content">信息表</div>-->
+<!--            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>-->
+<!--          </div>-->
+<!--          <div class="mdui-collapse-item-body mdui-list">-->
+<!--            <a href="/xsb_form" class="-->
+<!--                    mdui-list-item-->
+<!--                    mdui-ripple-->
+<!--                    ">学生信息表</a>-->
+<!--            <a href="/zyb_form" class="-->
+<!--                    mdui-list-item-->
+<!--                    mdui-ripple-->
+<!--                    ">专业信息表</a>-->
+<!--            <a href="/jxjhb_form" class="-->
+<!--                    mdui-list-item-->
+<!--                    mdui-ripple-->
+<!--                    ">教学计划表</a>-->
+<!--            <a href="/jxrwb_form" class="-->
+<!--                    mdui-list-item-->
+<!--                    mdui-ripple-->
+<!--                    ">教学任务表</a>-->
+<!--          </div>-->
+<!--    </div>-->
+<!--      <div class="-->
+<!--          mdui-collapse-item-->
+<!--          ">-->
+<!--      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">-->
+<!--            <i class="-->
+<!--              mdui-list-item-icon-->
+<!--              mdui-icon-->
+<!--              material-icons-->
+<!--              mdui-text-color-blue">near_me</i>-->
+<!--            <div class="mdui-list-item-content">功能</div>-->
+<!--            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>-->
+<!--          </div>-->
+<!--      <div class="mdui-collapse-item-body mdui-list">-->
+<!--                    <a href="/generate_jxrwb" class="-->
+<!--                    mdui-list-item-->
+<!--                    mdui-ripple-->
+<!--                    ">生成教学任务表</a>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+    <a id="anchor-top"></a>
+    <div class="container p-introduction mdui-container">
+    <h1 class="title mdui-text-color-theme">登录</h1>
+    </div>
+
+    <div class="mdui-container">
+        <form action="/login" method="post">
+          <div class="mdui-row">
+            <div class="mdui-col-xs-3">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">用户名</label>
+                    <input class="mdui-textfield-input" name="username" id="username" type="text"/>
+                </div>
+            </div>
+          </div>
+
+          <div class="mdui-row">
+            <div class="mdui-col-xs-3">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">密码</label>
+                    <input class="mdui-textfield-input" name="password" id="password" type="password"/>
+                </div>
+            </div>
+          </div>
+          <div class="mdui-row">
+              <div class="mdui-col-xs-3">
+                  <br>
+                  <input type="submit" value="登录" class="mdui-btn mdui-btn-raised mdui-float-center">
+              </div>
+          </div>
+          <div class="mdui-row">
+              <div class="mdui-col-xs-3">
+                <div class="intro mdui-typo">
+                    <br>
+                    <p>{{emsg}}</p>
+                </div>
+              </div>
+          </div>
+        </form>
+    </div>
+
+    <div class="mdui-dialog">
+      <div class="mdui-dialog-title">登陆错误</div>
+      <div class="mdui-dialog-content">{{emsg}}</div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple">OK</button>
+      </div>
+    </div>
+
+    <!-- MDUI JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  </body>
+</html>
